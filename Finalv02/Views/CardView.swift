@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CardView: View {
-    @StateObject var listViewModel = MeetingListItemViewModel()
+    @StateObject var cardViewModel = CardViewModel()
     
     let item: MeetingItem
     
@@ -26,7 +26,7 @@ struct CardView: View {
             Spacer()
             
             Button {
-                listViewModel.toggleIsDone(item: item)
+                cardViewModel.toggleIsDone(item: item)
                 
             } label: {
                 Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
@@ -37,8 +37,8 @@ struct CardView: View {
 }
 
 
-struct MeetingListItemView_Previews: PreviewProvider {
+struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(item: .init(id: "123", title: "Quarterly Review", lengthInMinutes: 30, startDate: Date().timeIntervalSince1970,  createdDate: Date().timeIntervalSince1970, isDone: true))
+        CardView(item: .init(id: "123", title: "Black Book", lengthInMinutes: 30, startDate: Date().timeIntervalSince1970,  createdDate: Date().timeIntervalSince1970, isDone: true))
     }
 }

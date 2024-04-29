@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct LogoView: View {
+    let titleColor = Color(red: 40/255, green: 147/255, blue:146/255)
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image("logo")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 200, height: 150)
+            .padding()
+        Text("Book Club Organizer")
+            .foregroundColor(titleColor)
+            .fontWeight(.semibold)
+            .font(Font.custom("AmericanTypewriter", size: 24))
+            .padding()
     }
 }
 
-#Preview {
-    LogoView()
+
+struct LogoView_Previews: PreviewProvider {
+    static var previews: some View {
+        LogoView()
+    }
 }

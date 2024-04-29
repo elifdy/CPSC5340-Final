@@ -63,7 +63,8 @@ class DetailEditViewModel: ObservableObject {
 //            .document(newId)
 //            .setData(newItem.asDictionary())
 //    }
-//    
+    
+    
     func save() {
             guard let uId = Auth.auth().currentUser?.uid else {
                 return
@@ -82,14 +83,11 @@ class DetailEditViewModel: ObservableObject {
 
             let meetingRef = db.collection("users").document(uId).collection("meetings").document(newId)
             batch.setData(newItem.asDictionary(), forDocument: meetingRef)
-
-            // Save each attendee
             for attendee in attendees {
                 let attendeeRef = meetingRef.collection("attendees").document(attendee.id.uuidString)
                 batch.setData(["id": attendee.id.uuidString, "name": attendee.name], forDocument: attendeeRef)
             }
-
-            batch.commit()  // Commits the batch write to Firestore
+            batch.commit()
         }
     
     var canSave: Bool {
